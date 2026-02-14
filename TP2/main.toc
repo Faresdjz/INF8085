@@ -1,14 +1,23 @@
 \babel@toc {french}{}\relax 
-\contentsline {section}{\numberline {1}Travail demandé}{2}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Entropie et sources d'information (10 points)}{2}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}La librairie de Babel (10 points)}{3}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Histogrammes (5 points)}{4}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Déchiffrement simple (15 points)}{8}{subsection.1.4}%
-\contentsline {subsection}{\numberline {1.5}Masque jetable (20 points)}{10}{subsection.1.5}%
-\contentsline {subsection}{\numberline {1.6}Communication à clé publique, HTTPS et SSL (5 points)}{12}{subsection.1.6}%
-\contentsline {subsection}{\numberline {1.7}Codage (9 points)}{16}{subsection.1.7}%
-\contentsline {subsection}{\numberline {1.8}Changement de codage (5 points)}{17}{subsection.1.8}%
-\contentsline {subsection}{\numberline {1.9}Chiffrement par bloc et modes d'opération (4 points)}{18}{subsection.1.9}%
-\contentsline {subsection}{\numberline {1.10}Organisation des mots de passe en UNIX/Linux (12 points)}{20}{subsection.1.10}%
-\contentsline {subsection}{\numberline {1.11}Choix des mots de passe (5 points + 5 bonus)}{22}{subsection.1.11}%
-\contentsline {section}{Bibliographie}{24}{section*.3}%
+\contentsline {section}{\numberline {1}Reconnaissance [/3]}{2}{section.1}%
+\contentsline {section}{\numberline {2}Accès initial [/7]}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Injection SQL sur la page de connexion [/1]}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Connexion par injection SQL [/2]}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Injection XSS sur la page de tickets [/1]}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Récupération des cookies admin par XSS [/2]}{4}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Connexion avec le cookie récupéré [/1]}{5}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Analyse en boîte blanche [/5]}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Récupération du code source via FTP [/1]}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Correction de la vulnérabilité FTP [/1]}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Correction de l'injection SQL dans le code PHP [/1]}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Mécanisme de basculement des services [/2]}{7}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Compromission d'un compte utilisateur [/4]}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Récupération du hash de carol par injection SQL [/2]}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Craquage du hash [/1]}{7}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Récupération de controller.c via SSH [/1]}{7}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Élévation de privilèges [/6]}{7}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Shell www-data par injection de commande PHP [/2]}{7}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Analyse de controller.c et vulnérabilité buffer overflow [/2]}{8}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Exploitation du buffer overflow pour devenir root [/2]}{8}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Accès physique = Game Over [3 points bonus]}{8}{section.6}%
+\contentsline {section}{Bibliographie}{9}{section*.3}%

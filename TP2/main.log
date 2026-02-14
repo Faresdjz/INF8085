@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.7.28)  10 FEB 2026 20:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.7.28)  14 FEB 2026 03:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -945,7 +945,7 @@ Package pgfplots notification 'compat/show suggested version=true': document has
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<images/poly.png, id=58, 43.89734pt x 19.20508pt>
+<images/poly.png, id=94, 43.89734pt x 19.20508pt>
 File: images/poly.png Graphic file (type png)
 <use images/poly.png>
 Package pdftex.def Info: images/poly.png  used on input line 111.
@@ -955,11 +955,11 @@ Package pdftex.def Info: images/poly.png  used on input line 111.
 [1
 
 {C:/Users/Fares/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./images/poly.png (PNG copy)>] (main.toc
-LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 4.
  (C:\Users\Fares\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
  (C:\Users\Fares\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ))
@@ -974,311 +974,107 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
                    \relax 
 l.149 \newpage
                [1]
-
-[2]
-<images/1.2.1.png, id=101, 1380.15625pt x 550.055pt>
-File: images/1.2.1.png Graphic file (type png)
-<use images/1.2.1.png>
-Package pdftex.def Info: images/1.2.1.png  used on input line 220.
-(pdftex.def)             Requested size: 350.68275pt x 139.76277pt.
-<images/1.2.2.png, id=102, 1443.3925pt x 498.86375pt>
-File: images/1.2.2.png Graphic file (type png)
-<use images/1.2.2.png>
-Package pdftex.def Info: images/1.2.2.png  used on input line 227.
-(pdftex.def)             Requested size: 350.68275pt x 121.19887pt.
-
-
-[3 <./images/1.2.1.png (PNG copy)> <./images/1.2.2.png (PNG copy)>]
-Overfull \hbox (7.43436pt too wide) in paragraph at lines 258--259
-[]\T1/cmr/m/it/12 CARPENTERS RE-DIS-TRI-BUTE DIS-QUI-SI-TIONS OR-NA-MEN-TED UN-
- []
-
-
-Overfull \hbox (19.54692pt too wide) in paragraph at lines 258--259
-\T1/cmr/m/it/12 HYS-TE-RI-CAL CLAIR-COLLES UN-HAL-LOW OLEO-RE-SINS FARES BEST-
- []
-
-
-Overfull \hbox (11.4151pt too wide) in paragraph at lines 263--264
-[]\T1/cmr/m/it/12 PNECRAGREF ER-QVF-GE-VOHGR QVFDHVFVGV-BAF BEANZ-RA-GRQ
- []
-
-
-Overfull \hbox (14.72972pt too wide) in paragraph at lines 263--264
-\T1/cmr/m/it/12 HAULF-GREVPNY PYN-VEP-BYYRF HAU-NYYBJ BYR-BERF-VAF SNERF
- []
-
-<images/1.3.3.png, id=111, 955.31906pt x 697.8572pt>
-File: images/1.3.3.png Graphic file (type png)
-<use images/1.3.3.png>
-Package pdftex.def Info: images/1.3.3.png  used on input line 269.
-(pdftex.def)             Requested size: 350.68275pt x 256.16927pt.
-
-
-[4]
-LaTeX Font Info:    Trying to load font information for T1+fvm on input line 274.
+LaTeX Font Info:    Trying to load font information for T1+fvm on input line 155.
  (C:\Users\Fares\AppData\Local\Programs\MiKTeX\tex/latex/bera\t1fvm.fd
 File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
 )
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 10.20007pt on input line 274.
-LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 9.30756pt on input line 274.
-LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
-(Font)              scaled to size 9.30756pt on input line 276.
-Package pgfplots info on input line 299: Using 'lua backend=false' for axis: x coord trafo unsupported.
+(Font)              scaled to size 10.20007pt on input line 155.
 
-Overfull \hbox (5.89127pt too wide) in paragraph at lines 305--306
- [] 
+Overfull \hbox (5.56622pt too wide) in paragraph at lines 161--162
+\T1/cmr/m/it/12 dis-tantes sé-cu-ri-sées et qu'elle fonc-tionne sur une dis-tri-bu-tion Li-nux de type Ubuntu. 
  []
 
-Package pgfplots info on input line 317: Using 'lua backend=false' for axis: x coord trafo unsupported.
+<images/1-debut.png, id=132, 681.29532pt x 494.59781pt>
+File: images/1-debut.png Graphic file (type png)
+<use images/1-debut.png>
+Package pdftex.def Info: images/1-debut.png  used on input line 171.
+(pdftex.def)             Requested size: 350.68275pt x 254.58864pt.
 
-Overfull \hbox (5.89127pt too wide) in paragraph at lines 323--324
- [][] 
- []
-
-
-
-[5{C:/Users/Fares/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <./images/1.3.3.png>]
-<images/1.3.5.png, id=140, 954.56625pt x 705.38531pt>
-File: images/1.3.5.png Graphic file (type png)
-<use images/1.3.5.png>
-Package pdftex.def Info: images/1.3.5.png  used on input line 338.
-(pdftex.def)             Requested size: 350.68275pt x 259.13719pt.
-
-
-[6 <./images/1.3.5.png>]
-Package pgfplots info on input line 368: Using 'lua backend=false' for axis: x coord trafo unsupported.
-
-Overfull \hbox (11.7662pt too wide) in paragraph at lines 374--375
- [] 
- []
-
-Package pgfplots info on input line 386: Using 'lua backend=false' for axis: x coord trafo unsupported.
-
-Overfull \hbox (11.7662pt too wide) in paragraph at lines 392--393
- [][] 
+Overfull \hbox (8.47047pt too wide) in paragraph at lines 186--187
+[]\T1/fvm/m/n/12 SELECT * FROM users WHERE username = 'admin'' AND password =
  []
 
 
-Overfull \hbox (1.52936pt too wide) in paragraph at lines 396--397
-\T1/cmr/m/n/12 comp-ta-bi-li-sées sur deux lettres à la fois ? Com-ment de-vrait être par exemple
+
+[2{C:/Users/Fares/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <./images/1-debut.png>]
+<images/2.1.png, id=141, 919.18407pt x 245.41687pt>
+File: images/2.1.png Graphic file (type png)
+<use images/2.1.png>
+Package pdftex.def Info: images/2.1.png  used on input line 191.
+(pdftex.def)             Requested size: 350.68275pt x 93.6301pt.
+<images/2.2.png, id=142, 608.2725pt x 426.84468pt>
+File: images/2.2.png Graphic file (type png)
+<use images/2.2.png>
+Package pdftex.def Info: images/2.2.png  used on input line 203.
+(pdftex.def)             Requested size: 350.68275pt x 246.09161pt.
+
+
+[3 <./images/2.1.png> <./images/2.2.png>]
+<images/xss-1.png, id=149, 560.0925pt x 141.52875pt>
+File: images/xss-1.png Graphic file (type png)
+<use images/xss-1.png>
+Package pdftex.def Info: images/xss-1.png  used on input line 219.
+(pdftex.def)             Requested size: 350.68275pt x 88.6172pt.
+<images/xss-2.png, id=150, 376.40625pt x 251.43938pt>
+File: images/xss-2.png Graphic file (type png)
+<use images/xss-2.png>
+Package pdftex.def Info: images/xss-2.png  used on input line 220.
+(pdftex.def)             Requested size: 350.68275pt x 234.27357pt.
+<images/xss-script.png, id=151, 521.69907pt x 325.96782pt>
+File: images/xss-script.png Graphic file (type png)
+<use images/xss-script.png>
+Package pdftex.def Info: images/xss-script.png  used on input line 238.
+(pdftex.def)             Requested size: 350.68275pt x 219.11353pt.
+
+
+[4 <./images/xss-1.png> <./images/xss-2.png>]
+<images/xss-admin.png, id=158, 956.07187pt x 983.92593pt>
+File: images/xss-admin.png Graphic file (type png)
+<use images/xss-admin.png>
+Package pdftex.def Info: images/xss-admin.png  used on input line 239.
+(pdftex.def)             Requested size: 350.68275pt x 360.89407pt.
+
+
+[5 <./images/xss-script.png> <./images/xss-admin.png>]
+<images/xss-success.png, id=165, 1917.41344pt x 1038.88126pt>
+File: images/xss-success.png Graphic file (type png)
+<use images/xss-success.png>
+Package pdftex.def Info: images/xss-success.png  used on input line 257.
+(pdftex.def)             Requested size: 350.68275pt x 190.00244pt.
+
+Overfull \hbox (9.2528pt too wide) in paragraph at lines 280--281
+[]\T1/cmr/m/n/12 Expliquez pré-ci-sé-ment com-ment cor-ri-ger la vul-né-ra-bi-lité qui per-met cette connexion
  []
 
 
-Overfull \hbox (7.35727pt too wide) in paragraph at lines 399--400
-[]\T1/cmr/m/it/12 En com-pa-rant les quatre his-to-grammes, on ob-serve que le chif-fre-ment ROT13
- []
 
-
+[6 <./images/xss-success.png>]
 
 [7]
-Overfull \hbox (7.78374pt too wide) in paragraph at lines 404--406
-\T1/cmr/m/it/12 Si les fré-quences étaient comp-ta-bi-li-sées sur deux lettres à la fois (di-grammes),
- []
-
-<images/dechiffrement.png, id=165, 959.83594pt x 700.11563pt>
-File: images/dechiffrement.png Graphic file (type png)
-<use images/dechiffrement.png>
-Package pdftex.def Info: images/dechiffrement.png  used on input line 425.
-(pdftex.def)             Requested size: 350.68275pt x 255.79112pt.
-
 
 [8]
 
-[9 <./images/dechiffrement.png>]
-LaTeX Font Info:    Font shape `T1/fvm/m/it' in size <12> not available
-(Font)              Font shape `T1/fvm/m/sl' tried instead on input line 464.
-LaTeX Font Info:    Font shape `T1/fvm/m/sl' will be
-(Font)              scaled to size 10.20007pt on input line 464.
-
-Overfull \hbox (7.7465pt too wide) in paragraph at lines 469--471
-\T1/cmr/m/it/12 La ver-sion non sé-cu-ri-taire uti-lise le mo-dule \T1/fvm/m/sl/12 random \T1/cmr/m/it/12 (ti-rages pseudo-aléatoires
- []
-
-(C:\Users\Fares\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-LaTeX Font Info:    Font shape `T1/fvm/m/it' in size <10.95> not available
-(Font)              Font shape `T1/fvm/m/sl' tried instead on input line 479.
-LaTeX Font Info:    Font shape `T1/fvm/m/sl' will be
-(Font)              scaled to size 9.30756pt on input line 479.
-
-Overfull \hbox (6.32053pt too wide) in paragraph at lines 493--495
-\T1/cmr/bx/it/12 Sécurité des deux mé-thodes. \T1/cmr/m/it/12 Le mo-dule \T1/fvm/m/sl/12 random \T1/cmr/m/it/12 pro-duit une suite pseudo-
- []
-
-
-
-[10]
-<images/1.5.2.png, id=204, 961.34157pt x 701.62125pt>
-File: images/1.5.2.png Graphic file (type png)
-<use images/1.5.2.png>
-Package pdftex.def Info: images/1.5.2.png  used on input line 509.
-(pdftex.def)             Requested size: 350.68275pt x 255.94508pt.
-<images/1.5.3.png, id=205, 956.07187pt x 703.12688pt>
-File: images/1.5.3.png Graphic file (type png)
-<use images/1.5.3.png>
-Package pdftex.def Info: images/1.5.3.png  used on input line 516.
-(pdftex.def)             Requested size: 350.68275pt x 257.89981pt.
-
-
-[11 <./images/1.5.2.png>]
-Overfull \hbox (8.732pt too wide) in paragraph at lines 536--536
-[]\T1/cmr/bx/n/14.4 Communication à clé pu-blique, HTTPS et SSL (5 points) 
- []
-
-
-
-[12 <./images/1.5.3.png>]
-
-[13]
-<images/1.6.5.png, id=236, 956.82469pt x 704.6325pt>
-File: images/1.6.5.png Graphic file (type png)
-<use images/1.6.5.png>
-Package pdftex.def Info: images/1.6.5.png  used on input line 578.
-(pdftex.def)             Requested size: 350.68275pt x 258.24779pt.
-<images/1.6.6.png, id=238, 958.3303pt x 703.87968pt>
-File: images/1.6.6.png Graphic file (type png)
-<use images/1.6.6.png>
-Package pdftex.def Info: images/1.6.6.png  used on input line 608.
-(pdftex.def)             Requested size: 350.68275pt x 257.57448pt.
-
-
-[14 <./images/1.6.5.png>]
-<images/1.6.7.png, id=248, 863.47594pt x 517.18219pt>
-File: images/1.6.7.png Graphic file (type png)
-<use images/1.6.7.png>
-Package pdftex.def Info: images/1.6.7.png  used on input line 615.
-(pdftex.def)             Requested size: 350.68275pt x 210.04161pt.
-
-
-[15 <./images/1.6.6.png> <./images/1.6.7.png>]
-
-[16]
-
-[17]
-<images/mdp_bad.png, id=269, 944.7797pt x 700.11563pt>
-File: images/mdp_bad.png Graphic file (type png)
-<use images/mdp_bad.png>
-Package pdftex.def Info: images/mdp_bad.png  used on input line 729.
-(pdftex.def)             Requested size: 350.68275pt x 259.872pt.
-
-Overfull \hbox (6.14645pt too wide) in paragraph at lines 732--734
-\T1/cmr/m/it/12 Le fi-chier mdp.jpg, conte-nant un mot de passe en-re-gis-tré sous forme d'image,
- []
-
-
-
-[18 <./images/mdp_bad.png>]
-Overfull \hbox (4.65672pt too wide) in paragraph at lines 735--737
-\T1/cmr/m/it/12 À l'ob-ser-va-tion du fi-chier de sor-tie, on constate que l'image chif-frée conserve
- []
-
-<images/mdp_good.png, id=278, 954.56625pt x 702.37407pt>
-File: images/mdp_good.png Graphic file (type png)
-<use images/mdp_good.png>
-Package pdftex.def Info: images/mdp_good.png  used on input line 748.
-(pdftex.def)             Requested size: 350.68275pt x 258.03094pt.
-
-
-[19 <./images/mdp_good.png>]
-
-[20]
-
-[21]
-<images/1.11.1.png, id=302, 953.06062pt x 703.87968pt>
-File: images/1.11.1.png Graphic file (type png)
-<use images/1.11.1.png>
-Package pdftex.def Info: images/1.11.1.png  used on input line 857.
-(pdftex.def)             Requested size: 350.68275pt x 258.9922pt.
-
-
-[22]
-Overfull \hbox (15.60492pt too wide) in paragraph at lines 866--867
-\T1/cmr/m/it/12 ser-vices (cour-riel, ré-seaux so-ciaux, pla-te-formes de jeux, banque, etc.). Exemple
- []
-
-
-
-[23 <./images/1.11.1.png>]
-Underfull \hbox (badness 1137) in paragraph at lines 887--888
-\T1/cmr/m/n/12 thon 3 Do-cu-men-ta-tion. []$\T1/fvm/m/n/12 https : / / docs . python . org / 3 / library / secrets .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 890--891
-[]\T1/cmr/m/n/12 HTTP vs HTTPS -- Dif-fé-rence entre les pro-to-coles de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 890--891
-\T1/cmr/m/n/12 trans-fert. AWS. []$\T1/fvm/m/n/12 https : / / aws . amazon . com / fr / compare /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 890--891
-\T1/fvm/m/n/12 the-[]difference-[]between-[]https-[]and-[]http/$[]\T1/cmr/m/n/12 . Consulté le 30 jan-vier
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 893--894
-[]\T1/cmr/m/n/12 Strict-Transport-Security hea-der. MDN Web Docs. []$\T1/fvm/m/n/12 https : / /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 893--894
-\T1/fvm/m/n/12 developer . mozilla . org / en-[]US / docs / Web / HTTP / Reference / Headers /
- []
-
-
-Underfull \hbox (badness 6032) in paragraph at lines 896--897
-[]\T1/cmr/m/n/12 Qu'est-ce qu'un cer-ti-fi-cat SSL ? Cloud-flare Lear-ning. []$\T1/fvm/m/n/12 https : / / www .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 896--897
-\T1/fvm/m/n/12 cloudflare . com / fr-[]fr / learning / ssl / what-[]is-[]an-[]ssl-[]certificate/$[]\T1/cmr/m/n/12 .
- []
-
-
-Underfull \hbox (badness 6575) in paragraph at lines 902--903
-[]\T1/cmr/m/n/12 Understanding /etc/-sha-dow file for-mat. Cy-ber-citi.biz. []$\T1/fvm/m/n/12 https : / / www .
- []
-
-
-Underfull \hbox (badness 2384) in paragraph at lines 905--906
-\T1/cmr/m/n/12 Stack Ex-change. []$\T1/fvm/m/n/12 https : / / unix . stackexchange . com / questions / 461022 /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 905--906
-\T1/fvm/m/n/12 what-[]is-[]the-[]difference-[]between-[]etc-[]shadow-[]and-[]etc-[]passwd$[]\T1/cmr/m/n/12 .
- []
-
-
-
-[24] (main.aux)
+[9] (main.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-07-19>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: BF1A126860CFF994F5FEE1BDA0AC4CFB;3172.
+(rerunfilecheck)             Checksum: 917E3F392279E822163E0BB68E03F08A;5764.
  ) 
 Here is how much of TeX's memory you used:
- 40238 strings out of 468149
- 897582 string characters out of 5431082
- 1763750 words of memory out of 5000000
- 68038 multiletter control sequences out of 15000+600000
- 650849 words of font info for 100 fonts, out of 8000000 for 9000
+ 38800 strings out of 468149
+ 872351 string characters out of 5431082
+ 1487159 words of memory out of 5000000
+ 66718 multiletter control sequences out of 15000+600000
+ 639300 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,12n,101p,757b,2343s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbi1200.pk> <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcti1200.pk> <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Fares/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Fares/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Fares/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Fares/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Fares/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Fares/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Fares/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Fares/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmb8a.pfb><C:/Users/Fares/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmr8a.pfb><C:/Users/Fares/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmro8a.pfb><C:/Users/Fares/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb>
-Output written on main.pdf (25 pages, 5786805 bytes).
+ 99i,12n,101p,757b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Fares\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Fares/AppData/Local/Programs/MiKTeX/fonts/type1/bera/fvmr8a.pfb>
+Output written on main.pdf (10 pages, 670647 bytes).
 PDF statistics:
- 896 PDF objects out of 1000 (max. 8388607)
- 132 named destinations out of 1000 (max. 500000)
- 187 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 531 PDF objects out of 1000 (max. 8388607)
+ 36 named destinations out of 1000 (max. 500000)
+ 234 words of extra memory for PDF output out of 10000 (max. 10000000)
 
