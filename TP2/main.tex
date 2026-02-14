@@ -158,7 +158,9 @@ Utilisez \texttt{nmap} pour scanner le serveur situé en 10.22.0.11. Identifiez 
 \textit{Après avoir lancé la machine Kali et effectué un scan avec nmap sur 10.22.0.11 en ignorant le port 2222, deux services sont actuellement exposés.}
 
 \medskip
-\textit{Le port 22/tcp est ouvert et exécute le service SSH. La version détectée est OpenSSH 8.9p1 sur Ubuntu. Cela indique que la machine permet des connexions distantes sécurisées et qu'elle fonctionne sur une distribution Linux de type Ubuntu.}
+\begin{sloppypar}
+\textit{Le port 22/tcp est ouvert et exécute le service SSH. La version détectée est OpenSSH 8.9p1 sur Ubuntu. La machine permet des connexions distantes sécurisées et fonctionne sur une distribution Linux de type Ubuntu.}
+\end{sloppypar}
 
 \medskip
 \textit{Le port 8080/tcp est ouvert et exécute un serveur web Apache 2.4.52 sur Ubuntu. Le scan révèle la présence d'une interface web menant vers une page de connexion login.php, ce qui suggère une application web avec authentification.}
@@ -166,9 +168,23 @@ Utilisez \texttt{nmap} pour scanner le serveur situé en 10.22.0.11. Identifiez 
 \medskip
 \textit{La détection du système d'exploitation indique un noyau Linux entre les versions 4.15 et 5.8. En combinant cette information avec les bannières des services, on peut conclure que la machine exécute probablement Ubuntu Linux.}
 
-\medskip
 \begin{center}
 \includegraphics[width=0.85\textwidth]{images/1-debut.png}
+\end{center}
+
+\medskip
+
+\medskip
+\textit{Après l'activation du service FTP depuis l'interface web, un nouveau scan nmap de 10.22.0.11 montre l'apparition d'un service supplémentaire sur le port 21. Le service détecté est un serveur FTP vsftpd en version 3.0.5.}
+
+\medskip
+\textit{Le scan indique aussi que l'accès FTP anonyme est autorisé. Une connexion sans identifiants permet de lister directement le contenu exposé. La liste retournée contient plusieurs fichiers du site, notamment index.php, login.php, functions.php, toggleService.php, submit\_ticket.php et view\_ticket.php. Cela confirme que le service FTP donne accès à des fichiers du code source de l'application.}
+
+\medskip
+\textit{La liste des services observés à ce stade comprend donc un service FTP sur le port 21, un service SSH sur le port 22 et un service web HTTP sur le port 8080.}
+
+\begin{center}
+\includegraphics[width=0.85\textwidth]{images/ftp.png}
 \end{center}
 
 %*******************************************************************************%
@@ -269,9 +285,14 @@ En utilisant le cookie récupéré, connectez-vous au site web en tant qu'admin.
 Depuis l'application web, cliquez sur le bouton rouge pour allumer le service FTP. Connectez-vous au service FTP et récupérez le code source du site.
 
 \vspace{0.8em}
-\noindent\textit{Votre réponse ici.}
+\textit{Une connexion FTP vers 10.22.0.11 a été établie en utilisant le nom d'utilisateur anonymous sans mot de passe. Le serveur vsftpd 3.0.5 accepte cette connexion et donne accès en lecture au répertoire contenant les fichiers de l'application web. La commande \texttt{ls} permet de lister l'ensemble des fichiers exposés, incluant functions.php, index.php, login.php, logout.php, status.php, submit\_ticket.php, toggleService.php et view\_ticket.php, ainsi que des ressources statiques (icônes PNG).}
+
+\medskip
+\textit{L'ensemble des fichiers a été récupéré à l'aide de la commande \texttt{mget *}, qui télécharge tous les fichiers du répertoire courant. Le code source complet du site est ainsi obtenu localement sur la machine Kali.}
+
 \begin{center}
-% Insérer capture d'écran
+\includegraphics[width=0.85\textwidth]{images/3.1.1.png}\\[0.5em]
+\includegraphics[width=0.85\textwidth]{images/3.1.2.png}
 \end{center}
 
 %-------------------------------------------------------------------------------%
@@ -280,7 +301,13 @@ Depuis l'application web, cliquez sur le bouton rouge pour allumer le service FT
 Expliquez précisément comment corriger la vulnérabilité qui permet cette connexion FTP.
 
 \vspace{0.8em}
-\noindent\textit{Votre réponse ici.}
+\textit{La vulnérabilité provient du fait que le serveur FTP autorise les connexions anonymes. Toute personne sur le réseau peut donc se connecter sans identifiants et accéder directement aux fichiers exposés, incluant le code source de l'application. Cela facilite fortement l'analyse et l'exploitation de l'application.}
+
+\medskip
+\textit{La correction consiste à désactiver l'accès anonyme dans la configuration de vsftpd. Dans le fichier de configuration \texttt{/etc/vsftpd/vsftpd.conf}, l'option \texttt{anonymous\_enable} doit être réglée à \texttt{NO}. Après modification, le service FTP doit être redémarré pour appliquer la configuration.}
+
+\medskip
+\textit{En complément, l'accès FTP devrait être limité aux seuls utilisateurs autorisés via des comptes authentifiés, avec des permissions minimales sur les répertoires. Le répertoire contenant le code source de l'application ne devrait jamais être exposé publiquement via FTP. Une solution plus sécuritaire consiste à remplacer FTP par SFTP ou un mécanisme de déploiement interne afin d'éviter toute exposition inutile de fichiers sensibles.}
 
 %-------------------------------------------------------------------------------%
 \subsection{Correction de l'injection SQL dans le code PHP [/1]}
@@ -288,7 +315,36 @@ Expliquez précisément comment corriger la vulnérabilité qui permet cette con
 Localisez dans le code PHP l'injection SQL exploitée dans la partie 4 et proposez une correction.
 
 \vspace{0.8em}
-\noindent\textit{Votre réponse ici.}
+\textit{L'injection SQL est dans le fichier login.php, dans le bloc qui traite le POST. Elle se situe à l'endroit où la requête est construite en concaténant directement \$username et \$password dans la chaîne SQL. La correction consiste à remplacer cette concaténation par une requête préparée.}
+
+\begin{lstlisting}[language=PHP, basicstyle=\small\ttfamily, breaklines=true, frame=single]
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);
+
+    try {
+        $stmt = $mysqli->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
+        if (!$stmt) {
+            throw new Exception("Error: " . $mysqli->error);
+        }
+
+        $stmt->bind_param("ss", $username, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        exit;
+    }
+
+    if ($result->num_rows != 0) {
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $username;
+        header("location: index.php");
+    } else {
+        $showError = true;
+    }
+}
+\end{lstlisting}
 
 %-------------------------------------------------------------------------------%
 \subsection{Mécanisme de basculement des services [/2]}
@@ -296,7 +352,20 @@ Localisez dans le code PHP l'injection SQL exploitée dans la partie 4 et propos
 En vous basant sur le code source PHP et Javascript de l'application web, expliquez précisément le fonctionnement du mécanisme qui permet de basculer l'état des services.
 
 \vspace{0.8em}
-\noindent\textit{Votre réponse ici.}
+\medskip
+\textit{Le tableau de bord lance automatiquement une mise à jour périodique via Javascript. La fonction updateStatus crée une requête HTTP GET vers le script status.php chaque seconde. La réponse est du JSON. Ce JSON contient l'état des services web, ftp et ssh, ainsi que le uptime. Le code Javascript parse la réponse puis met à jour les éléments de la page en ajustant les classes CSS des indicateurs. Les classes running, stopped et notfound déterminent la couleur affichée.}
+
+\medskip
+\textit{Le basculement de l'état se fait au clic sur un indicateur. Chaque bouton appelle toggleService avec un identifiant de service prédéfini dans le onclick, par exemple apache2, vsftpd ou ssh. toggleService envoie ensuite une requête HTTP GET vers toggleService.php en ajoutant le paramètre service dans l'URL.}
+
+\medskip
+\textit{Côté PHP, toggleService.php commence par vérifier que la session existe et que l'utilisateur est authentifié. Ensuite, une vérification supplémentaire impose que l'utilisateur soit admin. Si ce n'est pas admin, le script répond immédiatement avec un JSON qui indique un échec et un message.}
+
+\medskip
+\textit{Si l'utilisateur est admin, le script récupère le paramètre service depuis la requête. Il appelle checkServiceStatus depuis functions.php pour déterminer si le service est running ou non. Selon le statut, le script exécute une commande système via shell\_exec en envoyant soit start soit stop vers le programme /usr/bin/controller, en lui passant le nom du service. La sortie de cette commande est placée dans un objet JSON success true et renvoyée au navigateur.}
+
+\medskip
+\textit{Enfin, côté Javascript, la requête de basculement ne met pas directement à jour les pastilles. L'affichage est rafraîchi par les appels périodiques à status.php, ce qui reflète l'état réel après l'action.}
 
 %*******************************************************************************%
 \section{Compromission d'un compte utilisateur [/4]}
